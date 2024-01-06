@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebStorage Library</title>
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: scroll;
+        }
+
+        #store {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            user-select: none;
+    
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="good" class="text" value="is targeted">
+
+    <button class="submit">Click</button>
+    <ul class="store">
+
+    </ul>
+    <script src="webstorage.js"></script>
+
+    <script>
+        // var emails = ['this.enable', 'jane', 'king', 'fils', 'goodLife', 'team', 'six', 'dog', 'grory', 'amapiano', 'strive', 'rose'];
+        // window.onmousedown = function() {
+        //     let start = 0;
+        //     let end = emails.length - 1;
+            
+        //     var ar = Array.from({length: 2}, function() {
+        //         var rand = Math.random();
+        //         let n = Math.round(rand * (end - start)) + start;
+
+        //         return emails[n] + '@gmail.com'; 
+
+        //     });
+
+        //     var dd = Array(0).fill(1);
+
+        //     console.log(dd, Boolean(void 0));
+
+        //     console.log(ar);
+        // }
+        window.oncontextmenu = function() {
+            var req = indexedDB.open('World', 1);
+
+            req.onupgradeneeded = function() {
+                var db = req.result;
+
+                var obj = db.createObjectStore('oceans', {keyPath: 'id'});
+                var index = obj.add({
+                    id: "s1"+Math.floor(Math.random() * 12),
+                    name: "surgey"
+                });
+            }
+
+            req.onsuccess = function() {
+                var db = req.result;
+
+                var grEmail = function() {
+                    var array = new Array(5, function() {
+                        return "hi"
+                    });
+
+                    console.log(array);
+                }
+
+                var obj = db.transaction('oceans', 'readwrite').objectStore('oceans');
+                obj.add({
+                    id: Math.floor(2 * Math.random() * 122),
+                    name: "sex",
+                    em: "this.enable@gma"
+                });
+
+                obj.index()
+            }
+        }
+
+        good.onclick = function() {
+            var req = indexedDB.open('World', 2);
+
+            req.onupgradeneeded = function(x) {
+                var db = req.result;
+
+                var tns = req.transaction;
+                
+                var obj = tns.objectStore('oceans');
+                console.log(tns);
+
+                obj.createIndex('MOS', 'emailx', {
+                    unique: true,
+                });
+                
+            };
+
+
+            req.onsuccess = function() {
+                var db = req.result;
+
+                var obj = db.transaction('oceans', 'readwrite').objectStore('oceans');
+
+                var ind = obj.index('MOS');
+                var query = ind.getAll();
+
+                query.onsuccess = function() {
+                    console.log(query.source);
+                }
+            }
+        }
+    </script>
+
+    <script>
+        
+        var w = window;
+        var re = {};
+        
+        (this.ids = [
+            'store', 
+            'submit'
+        ], this.DECLARE = (ids.push('text'), function() {
+
+            ids.map(e => {
+                w[e] = document.querySelector('.'+e);
+            });
+
+            return w, self.ACTION(
+                [w, 'onload'],
+                [submit, 'onclick']
+            );
+            
+        })(this.ACTION = function(...[t,a]) {
+
+            t[0][t[1]] = (void 0, this.DOM = () => {
+                var web = webstorage['indexedb'];
+
+                const CONFIGURATIONS = {
+                    name: "School_Database",
+                    entity: "Students",
+                    rule: "readwrite", // 'readonly'
+                    version: 1,
+                    keyPath: {
+                        value: void 0, // 'id'
+                        autoIncrement: true,
+                    },
+                    structure: "single", // 'whole'
+                    uniqueIndex: {
+                        data: new Map([
+                            ['PKEMAIL', 'email'],
+                            ['PKPHONE', 'phone']
+                        ]),
+                    },
+                    fetch: {
+                        data: 'index', // 'keys', 'index'
+                        name: 'PKEMAIL',
+                    }
+                };
+
+                // web(CONFIGURATIONS).set([{
+                //     name: text.value,
+                //     age: 10,
+                //     email: "this.enable@gmail.com",
+                //     phone: '+250 791 498 264'
+                // }]);
+
+                // async function w() {
+                //     var w_ = await web(CONFIGURATIONS).get();
+                //     console.log(w_)
+                // }
+
+                // w();
+
+                var w_ = web(CONFIGURATIONS).get()
+                .then(e => {
+                    console.log(e)
+                }).catch(err => {
+                    console.log(err)
+                });
+
+
+                web(CONFIGURATIONS).upgrade().then(r => {
+                    console.log("Upgraded successfully")
+                }).catch(err => {
+                    console.error(err)
+                })
+          
+
+                text.value = '';
+            }, (e) => {
+                
+            });
+
+            a[0][a[1]] = w.DOM;
+
+        }));
+
+
+        console.log(store);
+    </script>
+</body>
+</html>
